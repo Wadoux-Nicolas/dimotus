@@ -1,0 +1,19 @@
+<%- include("partials/header") %>
+
+<main>
+    <section>
+        <h2>Les règles du jeu</h2>
+        <p>Le jeu est basé sur la célèbre émission "Motus".</p>
+        <p>Ce jeu peut se jouer à partir de <%= minPlayers %> joueurs. Un de ces joueurs, une fois la partie lancée, sera élu comme le "Game master". Il devra choisir un mot à faire deviner aux autres (il peut aussi en générer un aléatoirement en cliquant sur "mot au hasard").</p>
+        <p>Ce mot devra faire entre <%= minWordLength %> et <%= maxWordLength %> caractères. Faîtes attention aux accents, dans ce jeu ils comptent ! Les majuscules ne sont pas comptées. Les caractères comme : - & * / + [] () etc ou les chiffres ne sont pas autorisés</p>
+        <p>Une fois le mot choisit, les autres joueurs devront deviner le mot en <%= guesses %> essais, en essayant d'en faire le moins possible. La première lettre du mot est offerte.</p>
+        <p>A chaque proposition, le mot proposé sera affiché dans la grille, désignant un essai. Les lettres vertes sont les lettres bien placées. Les lettres en jaunes existent dans le mot, mais ne sont pas au bon endroit. Les autres n'existent pas dans le mot.</p>
+        <p>Par exemple, si le Game master choisit Banane, et qu'un joueur ecrit Hamame, les "a" et le "e" seront en vert.</p>
+        <p>Dès qu'un joueur trouve le mot, le jeu s'arrête et il gagne. Si personne ne le trouve selon le nombre de coups autorisés, c'est le Game Master qui gagne.</p>
+        <div class="action">
+            <a href="/"><button>Accueil</button></a>
+        </div>
+    </section>
+</main>
+
+<%- include("partials/footer") %>

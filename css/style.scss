@@ -1,0 +1,237 @@
+$red: rgb(228, 34, 24);
+$green: rgb(9, 111, 9);
+$orange: #d4b91d;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(
+        to bottom right,
+        #403F44, #1E1B32
+    ), no-repeat;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 0 10px;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(
+        to bottom right,
+        #FFDEF2, #E6F0FF
+    ), no-repeat;
+    color: rgb(28, 28, 28);
+    border-radius: 0 0 20px 20px;
+    text-align: center;
+    line-height: 60px;
+}
+
+main {
+    margin: auto;
+    padding: 30px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: whitesmoke;
+    
+    section {
+        h2 {
+            margin: auto;
+            border-bottom: solid 2px peachpuff;
+            width: fit-content;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+    }
+}
+
+#grid {
+    margin: auto;
+    border-collapse: collapse;
+
+    td {
+        text-transform: uppercase;
+        background-color: rgb(25, 25, 188);
+        border: solid 1px whitesmoke;
+        font-size: 20px;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+
+        &.valid {
+            background-color: $green;
+        }
+
+        &.exists {
+            background-color: $orange;
+        }
+    }
+
+    &.disabled {
+        td:not(.force-validity) {
+            background-color: $red;
+        }
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.action {
+    width: 100%;
+    text-align: end;
+    margin: 10px 0;
+}
+
+button {
+    font-size: 14px;
+    font-weight: 200;
+    padding: 10px;
+    margin: auto;
+    outline: 0;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(103, 75, 152);
+    color: whitesmoke;
+    transition: all 0.5s ease;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: whitesmoke;
+        color: rgb(103, 75, 152);
+    }
+
+    &.link {
+        background: transparent;
+        &:hover {
+            background: rgba(0,0,0,0.2);
+        }
+    }
+}
+
+#playersList, #actionList {
+    list-style: none;
+    text-align: center;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#playersList {
+    li {
+        &::after{
+            content: ' - en attente';
+            color: $red;
+        }
+
+        &.ready::after{
+            content: ' - prêt';
+            color: $green;
+        }
+    }
+}
+
+#actionList {
+    display: flex;
+    flex-direction: column-reverse;
+
+    li {
+        color: whitesmoke;
+
+        & .valid {
+            color: $green;
+        }
+
+        & .exists {
+            color: $orange;
+        }
+    }
+}
+
+/* ---- form field ---- */
+.form__group {
+    position: relative;
+    padding: 15px 0 0;
+    margin-top: 10px;
+}
+
+.form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #9b9b9b;
+    outline: 0;
+    font-size: 16px;
+    color: whitesmoke;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+        color: transparent;
+    }
+
+    &:placeholder-shown ~ .form__label {
+        font-size: 16px;
+        cursor: text;
+        top: 22px;
+    }
+
+    &:required,&:invalid { 
+        box-shadow:none; 
+    }
+
+    &:focus {
+        padding-bottom: 6px;  
+        font-weight: 700;
+        border-width: 3px;
+        border-image: linear-gradient(to right, #113c99, #a638ef);
+        border-image-slice: 1;
+        
+        ~ .form__label {
+            position: absolute;
+            top: 0;
+            display: block;
+            transition: 0.2s;
+            font-size: 1rem;
+            color: #11998e;
+            font-weight:700;    
+        }
+    }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+/* ---- Scroll ---- */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #4a14ad #8686b1;
+
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #8686b1;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #4a14ad;
+        border-radius: 12px;
+        border: 0px none #ffffff;
+    }
+}

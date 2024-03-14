@@ -1,0 +1,96 @@
+<%- include("partials/header") %>
+
+<main>
+    <section id="waitingRoom">
+        <h2>Salle d'attente</h2>
+        <p>En attente d'autres joueurs. Dès que vous serez prêt, cliquez sur le bouton correspondant</p>
+        <div class="action">
+            <a href="/"><button class="link">Accueil</button></a>
+            <button id="play">Je suis prêt</button>
+        </div>
+        <div>
+            <h3>Liste des joueurs</h3>
+            <ul id="playersList">
+                
+            </ul>
+        </div>
+    </section>
+
+    <section id="gameHasStarted" class="hidden">
+        <h2>Essaye plus tard</h2>
+        <p>La partie a déjà commencée, rééssaye plus tard</p>
+        <div class="action">
+            <button class="reloadBtn">Réessayer</button>
+        </div>
+    </section>
+    
+    <section id="waitingWord" class="hidden">
+        <h2>Prépare toi !</h2>
+        <p>Le game master choisit un mot...</p>
+        <p>Pour rappel, les majuscules ne comptent pas, mais attention aux accents !</p>
+        <p>Une lettre verte ? Elle est bien placée. Une orange ? Elle n'est pas bien placée. Sinon, elle n'existe pas :(</p>
+    </section>
+    
+    <section id="masterScreen" class="hidden">
+        <h2>C'est à toi de choisir un mot !</h2>
+        <p>Choisis un mot entre <%= parameters.minLength %> et <%= parameters.maxLength %> lettres que les autres devront trouver</p>
+        <form id="master-input" action="">
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Mot à deviner" name="wordToGuess" id='wordToGuess' required minlength="<%= parameters.minLength %>" maxlength="<%= parameters.maxLength %>" autocomplete="off"/>
+                <label for="wordToGuess" class="form__label">Mot à deviner</label>
+            </div>
+            <div class="action">
+                <button type="button" id="randomWord" class="link">Mot au hasard</button>
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+    </section>
+
+    <section id="masterGameWait" class="hidden">
+        <h2>Les joueurs essaient de deviner ton mot</h2>
+        <p>Attend que quelqu'un le trouve, ou que le jeu se termine</p>
+        <button class="link" type="button" id="displayActionList">Les essais des joueurs</button>
+        <ul id="actionList">
+
+        </ul>
+    </section>
+
+    <section id="masterGameEnded" class="hidden">
+        <h2>Resultats</h2>
+        <p id="masterResult"></p>
+        <div class="action">
+            <button class="reloadBtn">Rejouer</button>
+        </div>
+    </section>
+    
+    <section id="gameScreen" class="hidden">
+        <h2>Mais quel est le mot ?</h2>
+        <p id="winText" class="hidden">✅ Tu as gagné !</p>
+        <p id="looseText" class="hidden">❌ Tu as perdu :(</p>
+        <form id="guess-input" action="">
+            <div class="form__group field">
+                <input type="input" autocomplete="off" class="form__field" placeholder="Proposition" name="proposition" id='proposition' required/>
+                <label for="proposition" class="form__label">Proposition</label>
+            </div>
+            <div class="action">
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+        <table id="grid">
+            
+        </table>
+        <p id="wholeGameLooseText" class="hidden"></p>
+        <div class="action hidden" id="playAgainFromGame">
+            <button class="reloadBtn">Rejouer</button>
+        </div>
+    </section>
+
+    <p id="error">
+    </p>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/game.js" defer>
+</script>
+
+<%- include("partials/footer") %>

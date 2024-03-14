@@ -1,0 +1,22 @@
+<%- include("partials/header") %>
+
+<main>
+    <section>
+        <h2>Choisis un pseudo avant de jouer</h2>
+        <form id="pseudo-form" action="">
+            <div class="form__group field">
+                <input type="input" class="form__field" placeholder="Pseudo" name="pseudo" id='pseudo' minlength="<%= minPseudoLength %>" maxlength="<%= maxPseudoLength %>" required />
+                <label for="pseudo" class="form__label">Pseudo</label>
+                <p>Le pseudo doit être entre <%= minPseudoLength %> et <%= maxPseudoLength %> caractères</p>
+            </div>
+            <div class="action">
+                <a href="/rules"><button type="button" class="link">Règles</button></a>
+                <button type="submit">C'est parti</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<script src="/js/main.js" defer></script>
+
+<%- include("partials/footer") %>
